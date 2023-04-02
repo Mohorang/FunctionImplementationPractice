@@ -22,9 +22,25 @@ public class CategoryController {
     public void addCategory(@RequestBody CategoryDto dto){
         categoryService.createCategory(dto);
     }
+//
+//    @PostMapping("/category/anonymous")
+//    public void addAnonymousCategory(@RequestBody CategoryDto dto){
+//        categoryService.createAnonymousCategory(dto);
+//    }
+
+
+    @GetMapping("/category/id/{id}")
+    public List<CategoryResult> getCategoryById(@PathVariable("id") Long categoryId){
+        return categoryService.getCategoryById(categoryId);
+    }
+
+    @GetMapping("/category/name/{name}")
+    public List<CategoryResult> getCategoryByName(@PathVariable("name") String categoryName){
+        return categoryService.getCategoryByName(categoryName);
+    }
 
     @GetMapping("/category")
-    public List<CategoryResult> getCategories(){
+    public List<CategoryResult> getAllCategory(){
         return categoryService.getAllCategories();
     }
 

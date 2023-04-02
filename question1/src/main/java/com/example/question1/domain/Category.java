@@ -18,7 +18,11 @@ public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //카테고리 이름
     private String name;
+
+    //카테고리 레벨
+    private int level;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Category parent;
@@ -28,9 +32,14 @@ public class Category {
 
     public Category(Category parent , CategoryDto dto){
         this.name = dto.getName();
+        this.level = dto.getLevel();
         this.parent = parent;
         if(parent != null){
             parent.sub.add(this);
         }
+    }
+
+    public void addSubCategory(Category parent , Category anonymousCategory) {
+        parent.sub.add(anonymousCategory);
     }
 }
