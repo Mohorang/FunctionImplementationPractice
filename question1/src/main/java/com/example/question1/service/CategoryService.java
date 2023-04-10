@@ -20,6 +20,7 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
 
+    //카테고리 생성 로직
     public void createCategory(CategoryDto dto) {
         Category parent = categoryRepository.findById(dto.getParentId()).orElse(null);
 
@@ -27,20 +28,7 @@ public class CategoryService {
         categoryRepository.save(newCategory);
     }
 
-//    //익명 게시판 생성
-//    @Transactional
-//    public void createAnonymousCategory(CategoryDto dto) {
-//        List<Category> parent = categoryRepository.findByLevel(dto.getLevel()-1);
-//
-//        Category anonymousCategory = new Category(parent.get(0), dto);
-//        for (int i = 1; i < parent.size(); i++) {
-//            parent.get(i).addSubCategory(parent.get(i),anonymousCategory);
-//        }
-//
-//        categoryRepository.save(anonymousCategory);
-//    }
-
-    //모든 카테고리 검색
+    //모든 카테고리 검색 로직
     @Transactional
     public List<CategoryResult> getAllCategories() {
         List<Category> result = categoryRepository.findAllCategory();
@@ -53,7 +41,7 @@ public class CategoryService {
         return a;
     }
 
-    //카테고리 식별자로 검색
+    //카테고리 식별자로 검색 로직
     @Transactional
     public List<CategoryResult> getCategoryById(Long categoryId) {
         Category result = categoryRepository.findByCategoryId(categoryId);
@@ -63,7 +51,7 @@ public class CategoryService {
         return b;
     }
 
-    //카테코리 이름으로 검색
+    //카테코리 이름으로 검색 로직
     @Transactional
     public List<CategoryResult> getCategoryByName(String categoryName) {
         Category result = categoryRepository.findByCategoryName(categoryName);
@@ -72,4 +60,17 @@ public class CategoryService {
 
         return b;
     }
+
+    //    //익명 게시판 생성
+//    @Transactional
+//    public void createAnonymousCategory(CategoryDto dto) {
+//        List<Category> parent = categoryRepository.findByLevel(dto.getLevel()-1);
+//
+//        Category anonymousCategory = new Category(parent.get(0), dto);
+//        for (int i = 1; i < parent.size(); i++) {
+//            parent.get(i).addSubCategory(parent.get(i),anonymousCategory);
+//        }
+//
+//        categoryRepository.save(anonymousCategory);
+//    }
 }

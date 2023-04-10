@@ -9,6 +9,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 자기 자신과 연관관계를 맺도록 테이블을 설계햇습니다.
+ */
 @Entity
 @Getter
 @NoArgsConstructor
